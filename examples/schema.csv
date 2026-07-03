@@ -1,0 +1,5 @@
+column,type,nullable,example
+user_email,email,false,customer@example.com
+signup_date,date,false,2026-01-31
+plan,category,false,free|pro|enterprise
+notes,text,true,
