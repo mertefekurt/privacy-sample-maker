@@ -1,29 +1,28 @@
-<img src="assets/readme-cover.svg" alt="Privacy Sample Maker cover" width="100%" />
-
 # Privacy Sample Maker
 
-Create deterministic privacy-safe CSV samples from schemas.
+Generate realistic CSV fixtures from a schema without copying real customer data.
 
-![stack](https://img.shields.io/badge/stack-Python-dc2626?style=flat-square) ![python](https://img.shields.io/badge/python-3.11-7c3aed?style=flat-square) ![license](https://img.shields.io/badge/license-MIT-0891b2?style=flat-square) ![ci](https://img.shields.io/badge/ci-GitHub%20Actions-b45309?style=flat-square)
+![Privacy Sample Maker cover](assets/readme-cover.svg)
 
-| Question | Answer |
-| --- | --- |
-| What is it? | A focused Python utility for privacy review. |
-| How does it run? | `privacy-sample-maker` |
-| Why keep it small? | Easier review, easier tests, fewer moving parts. |
+## Schema in, sample rows out
 
-## Command
-
-```bash
-python -m pip install -e ".[dev]"
-privacy-sample-maker examples/schema.csv
+```csv
+column,type,nullable,example
+user_email,email,false,customer@example.com
+signup_date,date,false,2026-01-31
+plan,category,false,free|pro|enterprise
+notes,text,true,
 ```
 
-## Verify
-
 ```bash
+git clone https://github.com/mertefekurt/privacy-sample-maker.git
+cd privacy-sample-maker
 python -m pip install -e ".[dev]"
-ruff check .
-pytest
-python -m privacy_sample_maker --help
+privacy-sample-maker examples/schema.csv --rows 5 --seed 11
 ```
+
+## Supported column types
+
+`email`, `name`, `company`, `date`, `integer`, `category`, `uuid`, and `text`.
+
+Examples are shape hints, not source values. The generator creates deterministic synthetic values instead of echoing sensitive examples back into the output.
