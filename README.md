@@ -1,18 +1,10 @@
 # Privacy Sample Maker
 
-Generate realistic CSV fixtures from a schema without copying real customer data.
-
 ![Privacy Sample Maker cover](assets/readme-cover.svg)
 
-## Schema in, sample rows out
+Synthetic CSV fixtures without real customer data. The repo is kept small on purpose: clone it, run the sample, inspect the output, then adapt the idea.
 
-```csv
-column,type,nullable,example
-user_email,email,false,customer@example.com
-signup_date,date,false,2026-01-31
-plan,category,false,free|pro|enterprise
-notes,text,true,
-```
+## Local path
 
 ```bash
 git clone https://github.com/mertefekurt/privacy-sample-maker.git
@@ -21,8 +13,17 @@ python -m pip install -e ".[dev]"
 privacy-sample-maker examples/schema.csv --rows 5 --seed 11
 ```
 
-## Supported column types
+## Where things live
 
-`email`, `name`, `company`, `date`, `integer`, `category`, `uuid`, and `text`.
+```text
+.github/        CI workflow
+examples/       sample inputs
+src/            package source
+tests/          test coverage
+.gitignore      project file
+pyproject.toml  package metadata
+```
 
-Examples are shape hints, not source values. The generator creates deterministic synthetic values instead of echoing sensitive examples back into the output.
+## Shape of the tool
+
+![Workflow diagram](assets/readme-diagram.svg)
